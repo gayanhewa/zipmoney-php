@@ -20,7 +20,7 @@
     </target>
 
     <target name="test-phpunit">
-        <exec command="php -S localhost:8000" passthru="true" checkreturn="true" />
+        <exec command="php -S localhost:8000 &gt; /dev/null 2&gt;&amp;1 &amp;" passthru="true" checkreturn="true" />
         <exec command="${bin.phpunit}" passthru="true" checkreturn="true" />
     </target> 
 

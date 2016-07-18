@@ -19,7 +19,7 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 
 class WebhookTest extends TestZipMoney
 {
-    public $webhook_url = "http://localhost:8000/express.server.php";
+    public $webhook_url = "http://localhost:8000/webhook.server.php";
 
     public function testWebhookValidSubscription()
     {
