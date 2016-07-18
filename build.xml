@@ -25,7 +25,7 @@
     </target> 
 
     <target name="tag" description="Create">
-        <propertyregex property="tagname" subject="${env.branch}" pattern="^feature/(\*|\d+(\.\d+){0,2}(\.\*)?)$"  match="$1" casesensitive="false" defaultvalue="false"/>                
+        <propertyregex property="tagname" subject="${env.branch}" pattern="^release/(\*|\d+(\.\d+){0,2}(\.\*)?)$"  match="$1" casesensitive="false" defaultvalue="false"/>                
         <echo msg="${tagname}" />
         <if>
             <ispropertytrue property="tagname" />
