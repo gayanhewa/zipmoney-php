@@ -19,7 +19,7 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 
 class ExpressTest extends TestZipMoney
 {
-    public $webhook_url = "local.zipmoney.com.au/zipMoney-php-sdk/express.server.php";
+    public $webhook_url = "http://localhost:8000/express.server.php";
 
     public function testGetQuoteDetails()
     {
