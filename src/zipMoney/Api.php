@@ -166,7 +166,7 @@ class Api
    */
   public function heartbeat()
   {
-    return $this->request(Resource::RESOURCE_HEARBEAT, $params);
+    return $this->request(Resource::RESOURCE_HEARBEAT, array());
   }
 
   /**
