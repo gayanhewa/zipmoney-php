@@ -7,7 +7,7 @@
 
     <property environment="env"/>
 
-    <target name="install" depends="install-deps,clean" description="Install Wordpress and Woocommerce" />
+    <target name="install" description="Install Wordpress and Woocommerce" />
 
     <target name="test" depends="test-phpunit" description="Run available tests" />
     
@@ -19,9 +19,9 @@
         <exec command="${bin.composer} install" passthru="true" checkreturn="true" />
     </target>
 
-    <target name="test-phpunit" depends="install,install-deps">
+    <target name="test-phpunit">
         <exec command="${bin.phpunit}" passthru="true" checkreturn="true" />
-    </target>
+    </target> 
 
     <target name="tag" description="Create">
         <propertyregex property="tagname" subject="${env.branch}" pattern="^feature/(\*|\d+(\.\d+){0,2}(\.\*)?)$"  match="$1" casesensitive="false" defaultvalue="false"/>                
