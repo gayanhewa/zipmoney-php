@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="zipMoney PHP Client Library" default="build" basedir=".">
+
+    <property name="vendor-dir" value="${project.basedir}/vendor/"/>
+    <property name="bin.composer"   value="${vendor-dir}bin/composer --working-dir=${project.basedir}"/>
+    <property name="bin.phpunit"    value="${vendor-dir}bin/phpunit" />
+
+    <property environment="env"/>
+
+    <target name="install" depends="install-deps,clean" description="Install Wordpress and Woocommerce" />
+
+    <target name="test" depends="test-phpunit" description="Run available tests" />
+    
+    <target name="clean" description="Remove composer install dependencies">
+        <delete dir="${vendor-dir}" />
+    </target>
+    
+    <target name="install-deps" description="Install all required dependencies">
+        <exec command="${bin.composer} install" passthru="true" checkreturn="true" />
+    </target>
+
+    <target name="test-phpunit" depends="install,install-deps">
+        <exec command="${bin.phpunit}" passthru="true" checkreturn="true" />
+    </target>
+
+    <target name="tag" description="Create">
+        <propertyregex property="tagname" subject="feature/1.0.0" pattern="^feature/(\*|\d+(\.\d+){0,2}(\.\*)?)$"  match="$1" casesensitive="false" defaultvalue="false"/>                
+        <echo msg="${tagname}" />
+        <if>
+            <ispropertytrue property="tagname" />
+            <then>
+                <echo msg="Is a tag  ${tagname}" />                
+                <exec command="git tag ${tagname}" passthru="true" checkreturn="true" />
+                <exec command="git push origin ${tagname}" passthru="true" checkreturn="true" />
+            </then>
+            <else>
+                <echo msg="Is not a tag, so not tagging" />
+            </else>
+        </if>
+    </target>
+</project>
