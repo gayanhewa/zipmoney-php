@@ -1,20 +1,27 @@
 <?php
-namespace zipMoney;
-
-use  zipMoney\Request;
-
 /**
- * @category  ZipMoney
+ * @category  zipMoney
+ * @package   zipMoney PHP Library
  * @author    Sagar Bhandari <sagar.bhandari@zipmoney.com.au>
- * @copyright 2016 ZipMoney Payments.
+ * @copyright 2016 zipMoney Payments.
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.zipmoney.com.au/
  */
 
+namespace zipMoney;
+
+use  zipMoney\Request;
+
 
 class Request 
 {
-
+  
+  /**
+   * Factory method to instantiate the request object with given parameters
+   *
+   * @param array $params   
+   * @return Object
+   */
   public static function factory($params = null)
   {
     $class = new self;
@@ -33,10 +40,14 @@ class Request
 
   return $class;
   }
-
-
+  
+  /**
+   * Checks if the property is set
+   *
+   * @param array $property   
+   * @return bool
+   */
   public function __isset($property){
     return isset($this->$property);
   } 
-
 }
