@@ -20,11 +20,30 @@ class TestZipMoney extends  \PHPUnit_Framework_TestCase
   
   protected $_txn_id;
 
+  protected $webhook_endpoint = null;
+
+  protected $express_endpoint = null;
+
   public function setUp(){ 
 
-    Configuration::$merchant_id  = 4;
-    Configuration::$merchant_key = "4mod1Yim1GEv+D5YOCfSDT4aBEUZErQYMJ3EtdOGhQY=";
-    Configuration::$environment  = Configuration::ENVIRONMENT_TEST;
+    $config = require "Config.php";
+
+    if(empty($config["merchant_id"]))
+      throw new \Exception("Merchant Id is required");
+
+    if(empty($config["merchant_key"])) 
+      throw new \Exception("Merchant Key is required");
+
+    Configuration::$merchant_id  = $config["merchant_id"];
+    Configuration::$merchant_key = $config["merchant_key"];
+    Configuration::$environment  = $config["environment"]?$config["environment"]:"test";
+
+    if(isset($config["webhook_endpoint"]))
+      $this->webhook_endpoint = $config["webhook_endpoint"];
+    
+    if(isset($config["express_endpoint"]))
+      $this->express_endpoint = $config["express_endpoint"];
+  
 
     $this->_current_order_id = rand(10000,9999999);
 

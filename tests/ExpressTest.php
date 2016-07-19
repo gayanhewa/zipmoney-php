@@ -19,11 +19,16 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 
 class ExpressTest extends TestZipMoney
 {
-    public $webhook_url = "http://localhost:8000/express.server.php";
+
+
 
     public function testGetQuoteDetails()
-    {
-      $ch = curl_init( $this->webhook_url . "?action=quotedetails");
+    {  
+
+      if(!$this->express_endpoint)
+        return;
+
+      $ch = curl_init( $this->express_endpoint . "?action=quotedetails");
       $payload = array("merchant_id"=>4,"merchant_key"=>"4mod1Yim1GEv+D5YOCfSDT4aBEUZErQYMJ3EtdOGhQY=");
      
       curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($payload) );
@@ -37,8 +42,11 @@ class ExpressTest extends TestZipMoney
     } 
 
     public function testParametersValidation()
-    {
-      $ch = curl_init( $this->webhook_url . "?action=quotedetails");
+    { 
+      if(!$this->express_endpoint)
+        return;
+
+      $ch = curl_init( $this->express_endpoint . "?action=quotedetails");
       $payload = array("merchant_id"=>4,"merchant_key"=>"4mod1Yim1GEv+D5YOCfSDT4aBEUZErQYMJ3EtdOGhQY=");
      
       //curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($payload) );
@@ -53,8 +61,11 @@ class ExpressTest extends TestZipMoney
 
 
     public function testMechantIdValid()
-    {
-      $ch = curl_init( $this->webhook_url . "?action=quotedetails");
+    { 
+      if(!$this->express_endpoint)
+        return;
+
+      $ch = curl_init( $this->express_endpoint . "?action=quotedetails");
       $payload = array("merchant_id"=>45,"merchant_key"=>"4mod1Yim1GEv+D5YOCfSDT4aBEUZErQYMJ3EtdOGhQY=");
      
       curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($payload) );
@@ -70,7 +81,11 @@ class ExpressTest extends TestZipMoney
 
     public function testShippingMethods()
     {
-            $ch = curl_init( $this->webhook_url . "?action=shippingmethods");
+      
+      if(!$this->express_endpoint)
+        return;
+
+      $ch = curl_init( $this->express_endpoint . "?action=shippingmethods");
       $payload = array("merchant_id"=>4,"merchant_key"=>"4mod1Yim1GEv+D5YOCfSDT4aBEUZErQYMJ3EtdOGhQY=");
      
       curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($payload) );
@@ -84,8 +99,13 @@ class ExpressTest extends TestZipMoney
     } 
     
     public function testConfirmShippingMethods()
-    {
-      $ch = curl_init( $this->webhook_url . "?action=confirmshippingmethod");
+    { 
+
+      if(!$this->express_endpoint)
+        return;
+
+    
+      $ch = curl_init( $this->express_endpoint . "?action=confirmshippingmethod");
       $payload = array("merchant_id"=>4,"merchant_key"=>"4mod1Yim1GEv+D5YOCfSDT4aBEUZErQYMJ3EtdOGhQY=");
      
       curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($payload) );
@@ -99,8 +119,13 @@ class ExpressTest extends TestZipMoney
     } 
 
     public function testConfirmOrder()
-    {
-      $ch = curl_init( $this->webhook_url . "?action=confirmorder");
+    { 
+
+      if(!$this->express_endpoint)
+        return;
+
+    
+      $ch = curl_init( $this->express_endpoint . "?action=confirmorder");
       $payload = array("merchant_id"=>4,"merchant_key"=>"4mod1Yim1GEv+D5YOCfSDT4aBEUZErQYMJ3EtdOGhQY=");
      
       curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($payload) );

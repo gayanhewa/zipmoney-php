@@ -608,6 +608,17 @@ class ExpressController {
 }
 ```
 
+## Running the tests
+Create a file named Config.php in /tests and provide the zipmoney credentials as follows
+```php
+<?php
+return array("merchant_id" => Your Merchant Id, 
+             "merchant_key" => "Your Merchant Key",
+             "environment" => "sandbox|production",
+             "webhook_endpoint" => "http://your-server-url-for-webhook-testing.com/test/webhook.server.php", // Optional. Required to test webhook api operations
+             "express_endpoint" => "http://your-server-url-for-express-testing.com/test/express.server.php"  // Optional. Required to test express api operations
+             );
+```
 
 ## License
 The package is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).

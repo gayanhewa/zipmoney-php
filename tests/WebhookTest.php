@@ -19,12 +19,16 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 
 class WebhookTest extends TestZipMoney
 {
-    public $webhook_url = "http://localhost:8000/webhook.server.php";
+    
+
 
     public function testWebhookValidSubscription()
-    {
+    {  
 
-      $ch = curl_init( $this->webhook_url );
+      if(!$this->webhook_endpoint)
+        return;
+
+      $ch = curl_init( $this->webhook_endpoint );
       # Setup request to send json via POST.
       $payload =  '{
         "Type" : "SubscriptionConfirmation",
@@ -49,7 +53,11 @@ class WebhookTest extends TestZipMoney
 
     public function testWebhookValidNotification()
     {
-      $ch = curl_init( $this->webhook_url );
+
+      if(!$this->webhook_endpoint)
+        return;
+
+      $ch = curl_init( $this->webhook_endpoint  );
       # Setup request to send json via POST.
       $payload =  '{
         "Type" : "Notification",
@@ -74,7 +82,10 @@ class WebhookTest extends TestZipMoney
 
     public function testWebhookInValid()
     {
-      $ch = curl_init( $this->webhook_url );
+      if(!$this->webhook_endpoint)
+        return ;
+
+      $ch = curl_init( $this->webhook_endpoint  );
       # Setup request to send json via POST.
       $payload =  '{
         "Type" : "SubscriptiosnConfirmation",
