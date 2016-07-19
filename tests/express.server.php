@@ -10,11 +10,19 @@ use zipMoney\Configuration;
 use zipMoney\Webhook\Express;
 
 
-require_once dirname(__FILE__).'/vendor/autoload.php';
+require_once '../vendor/autoload.php';
+  
+$config = require_once "Config.php";
 
-Configuration::$merchant_id  = 4;
-Configuration::$merchant_key = "4mod1Yim1GEv+D5YOCfSDT4aBEUZErQYMJ3EtdOGhQY=";
-Configuration::$environment  = Configuration::ENVIRONMENT_TEST;
+if(empty($config["merchant_id"]))
+  throw new \Exception("Merchant Id is required");
+
+if(empty($config["merchant_key"])) 
+  throw new \Exception("Merchant Key is required");
+
+Configuration::$merchant_id  = $config["merchant_id"];
+Configuration::$merchant_key = $config["merchant_key"];
+Configuration::$environment  = $config["environment"]?$config["environment"]:"test";
 
 class ZipMoneyExpress extends Express
 {
