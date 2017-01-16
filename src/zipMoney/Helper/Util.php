@@ -6,7 +6,7 @@ class Util
   /**
    * Converts object to array
    *
-   * @param  array $d
+   * @param  object $d
    * @return object
    */
   public static function objectToArray($d)

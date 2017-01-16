@@ -10,9 +10,6 @@
 
 namespace zipMoney;
 
-use  zipMoney\Request;
-
-
 class Request 
 {
   
@@ -20,7 +17,7 @@ class Request
    * Factory method to instantiate the request object with given parameters
    *
    * @param array $params   
-   * @return Object
+   * @return Request
    */
   public static function factory($params = null)
   {

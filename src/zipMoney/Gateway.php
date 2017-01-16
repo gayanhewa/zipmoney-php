@@ -20,7 +20,7 @@ class Gateway
   /**
    * Returns the zipMoney\Api Object.
    *
-   * @return  zipMoney\Api
+   * @return  \zipMoney\Api
    */
   public static function api()
   {
