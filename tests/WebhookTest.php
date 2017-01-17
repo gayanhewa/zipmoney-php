@@ -51,35 +51,6 @@ class WebhookTest extends TestZipMoney
       $this->assertEquals(200,$status);
     } 
 
-    public function testWebhookValidNotification()
-    {
-
-      if(!$this->webhook_endpoint)
-        return;
-
-      $ch = curl_init( $this->webhook_endpoint  );
-      # Setup request to send json via POST.
-      $payload =  '{
-        "Type" : "Notification",
-        "MessageId" : "35a8b863-85ce-5859-931a-f6a4b052e6fb",
-        "TopicArn" : "arn:aws:sns:ap-southeast-2:381371729123:Sagars-sandbox-4-112-100000",
-        "Subject" : "authorise_succeeded",
-        "Message" : "{\"type\":\"authorise_succeeded\",\"response\":{\"txn_id\":\"8701\",\"order_id\":\"145000008\",\"reference\":null,\"create_time\":\"2015-11-19T13:26:34.1970570+11:00\",\"status\":\"Authorised\",\"error_message\":null,\"metadata\":null,\"merchant_id\":\"4\",\"merchant_key\":\"4mod1Yim1GEv+D5YOCfSDT4aBEUZErQYMJ3EtdOGhQY=\",\"version\":null}}",
-        "Timestamp" : "2015-11-19T02:26:36.920Z",
-        "SignatureVersion" : "1",
-        "Signature" : "N6shrMU4wNlMjjzTiShWyp9dGwtM2Fld0G4807ETIjlP8AMEYEIRPun/V09Z0ytNMFUNcZQfEJqd87iRVkXNapV2Y55i/8QAQ1bSm2NCmeNyEuAxadVCuZQhdjyvQajXhWIiAjOM6WQSIvkRmgG5kJUBRSjNU2tmMYZXW31Qd10H0cRvJZKAZ9OYj0z1MFoLlrLD4FhLeehqE36/mPliQxTUU3qYqtOdF8qsMeqT1WEMJ2kCNiT/VmglSnjniHX6jpfl/8Ktj/Bx9ZC8bki+Si73ic4n3RbriSXl5DCxpb5YMDXGPW989dPeAZmBuaex4warrUWhMn6kkHIa6B6nsQ==",
-        "SigningCertURL" : "https://sns.ap-southeast-2.amazonaws.com/SimpleNotificationService-bb750dd426d95ee9390147a5624348ee.pem",
-        "UnsubscribeURL" : "https://sns.ap-southeast-2.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:ap-southeast-2:381371729123:Sagars-sandbox-4-112-100000:af109a0a-fa0a-43b3-95b3-f910b288b5be"
-      }';
-      curl_setopt( $ch, CURLOPT_POSTFIELDS, $payload );
-      curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-      curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-      $result = curl_exec($ch);
-      $status = curl_getinfo($ch,CURLINFO_HTTP_CODE);
-      curl_close($ch);
-      $this->assertEquals(200,$status);
-    } 
-
     public function testWebhookInValid()
     {
       if(!$this->webhook_endpoint)
