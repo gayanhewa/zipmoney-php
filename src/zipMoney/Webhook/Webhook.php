@@ -322,7 +322,7 @@ abstract class Webhook
   {
     // Get the certificate.
     $this->validateUrl($message->SigningCertURL);
-    $certificate = call_user_func('file_get_contents', $message->SigningCertURL);
+    $certificate = $this->url_get_contents($message->SigningCertURL);
 
     // Extract the public key.
     $key = openssl_get_publickey($certificate);
@@ -340,6 +340,27 @@ abstract class Webhook
       );
     }
   }
+
+  private function url_get_contents ($url) 
+  {
+    if (function_exists('curl_exec')){ 
+        $conn = curl_init($url);
+        curl_setopt($conn, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($conn, CURLOPT_FRESH_CONNECT,  true);
+        curl_setopt($conn, CURLOPT_RETURNTRANSFER, 1);
+        $url_get_contents_data = (curl_exec($conn));
+        curl_close($conn);
+    }elseif(function_exists('file_get_contents')){
+        $url_get_contents_data = file_get_contents($url);
+    }elseif(function_exists('fopen') && function_exists('stream_get_contents')){
+        $handle = fopen ($url, "r");
+        $url_get_contents_data = stream_get_contents($handle);
+    }else{
+        $url_get_contents_data = false;
+    }
+
+    return $url_get_contents_data;
+  } 
 
   /**
    * Determines if a message is valid and that is was delivered by AWS. This method does not throw exceptions and returns a simple boolean value.

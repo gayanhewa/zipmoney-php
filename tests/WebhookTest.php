@@ -31,46 +31,17 @@ class WebhookTest extends TestZipMoney
       $ch = curl_init( $this->webhook_endpoint );
       # Setup request to send json via POST.
       $payload =  '{
-        "Type" : "SubscriptionConfirmation",
-        "MessageId" : "10c67dbc-2300-4217-958e-c3f596fd606e",
-        "Token" : "2336412f37fb687f5d51e6e241d44a2cb13621070379f721624f496560c42a79e22f356446e64ecc0eeec0d6ad91994c6375d57453798f2743d35fcda82f8eca3fc7add92548cd8e7f4d99b5a78400e5d34de2b34763c58bc2aedca1fd5bcf2ac59bdd162d292bf5b2884f0fcd4f52d0d0240b6bbe61a5184beeb636d8e52bbc",
-        "TopicArn" : "arn:aws:sns:ap-southeast-2:381371729123:NotificationTestSagar",
-        "Message" : "You have chosen to subscribe to the topic arn:aws:sns:ap-southeast-2:381371729123:NotificationTestSagar.\nTo confirm the subscription, visit the SubscribeURL included in this message.",
-        "SubscribeURL" : "https://sns.ap-southeast-2.amazonaws.com/?Action=ConfirmSubscription&TopicArn=arn:aws:sns:ap-southeast-2:381371729123:NotificationTestSagar&Token=2336412f37fb687f5d51e6e241d44a2cb13621070379f721624f496560c42a79e22f356446e64ecc0eeec0d6ad91994c6375d57453798f2743d35fcda82f8eca3fc7add92548cd8e7f4d99b5a78400e5d34de2b34763c58bc2aedca1fd5bcf2ac59bdd162d292bf5b2884f0fcd4f52d0d0240b6bbe61a5184beeb636d8e52bbc",
-        "Timestamp" : "2016-05-04T02:06:17.367Z",
-        "SignatureVersion" : "1",
-        "Signature" : "RqJlLpU7u0c1yMtVunDuJYfrjxmYOh/z+JB/dbgl7rK69I+It3kHKCozDRfz5bGU8MrIXBeR3CtCKaapt+xuH/8YAWxFZ4ihnp0eiCTnRePZO2+G6o5VbVx00q3qGODQg9R/TSM4oSZPb48vNjFy4F0EQrzMNjaazH5qT7armA8vEEokBbFmBSMoXPYVz27xcewTT3Z3ppqi2nSz9LuAT/RG3WFWOPCW0/6b23VEK3GqlRcSOkxAucAOFHhrwXMAOHEtCIXv+Wr5HcVpMfEuwNZn4gI3GUXN1Ipe2udW1yLpozfZmDHjws8JgNIfccJCmECtwqoF/CcXrXYPVlVSCg==",
-        "SigningCertURL" : "https://sns.ap-southeast-2.amazonaws.com/SimpleNotificationService-bb750dd426d95ee9390147a5624348ee.pem"
-      }';
-      curl_setopt( $ch, CURLOPT_POSTFIELDS, $payload );
-      curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-      curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-      $result = curl_exec($ch);
-      $status = curl_getinfo($ch,CURLINFO_HTTP_CODE);
-      curl_close($ch);
-      $this->assertEquals(200,$status);
-    } 
-
-    public function testWebhookValidNotification()
-    {
-
-      if(!$this->webhook_endpoint)
-        return;
-
-      $ch = curl_init( $this->webhook_endpoint  );
-      # Setup request to send json via POST.
-      $payload =  '{
-        "Type" : "Notification",
-        "MessageId" : "35a8b863-85ce-5859-931a-f6a4b052e6fb",
-        "TopicArn" : "arn:aws:sns:ap-southeast-2:381371729123:Sagars-sandbox-4-112-100000",
-        "Subject" : "authorise_succeeded",
-        "Message" : "{\"type\":\"authorise_succeeded\",\"response\":{\"txn_id\":\"8701\",\"order_id\":\"145000008\",\"reference\":null,\"create_time\":\"2015-11-19T13:26:34.1970570+11:00\",\"status\":\"Authorised\",\"error_message\":null,\"metadata\":null,\"merchant_id\":\"4\",\"merchant_key\":\"4mod1Yim1GEv+D5YOCfSDT4aBEUZErQYMJ3EtdOGhQY=\",\"version\":null}}",
-        "Timestamp" : "2015-11-19T02:26:36.920Z",
-        "SignatureVersion" : "1",
-        "Signature" : "N6shrMU4wNlMjjzTiShWyp9dGwtM2Fld0G4807ETIjlP8AMEYEIRPun/V09Z0ytNMFUNcZQfEJqd87iRVkXNapV2Y55i/8QAQ1bSm2NCmeNyEuAxadVCuZQhdjyvQajXhWIiAjOM6WQSIvkRmgG5kJUBRSjNU2tmMYZXW31Qd10H0cRvJZKAZ9OYj0z1MFoLlrLD4FhLeehqE36/mPliQxTUU3qYqtOdF8qsMeqT1WEMJ2kCNiT/VmglSnjniHX6jpfl/8Ktj/Bx9ZC8bki+Si73ic4n3RbriSXl5DCxpb5YMDXGPW989dPeAZmBuaex4warrUWhMn6kkHIa6B6nsQ==",
-        "SigningCertURL" : "https://sns.ap-southeast-2.amazonaws.com/SimpleNotificationService-bb750dd426d95ee9390147a5624348ee.pem",
-        "UnsubscribeURL" : "https://sns.ap-southeast-2.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:ap-southeast-2:381371729123:Sagars-sandbox-4-112-100000:af109a0a-fa0a-43b3-95b3-f910b288b5be"
-      }';
+              "Type" : "SubscriptionConfirmation",
+              "MessageId" : "fe202b5d-43e1-4f58-8d2b-b14a46de3e70",
+              "Token" : "2336412f37fb687f5d51e6e241d59b68cca49906632685027c0c87fb03853b30e8c01db85e702587e2eecb17c042d4079f74cc572e3bfbc416798164e9b158bb1f7a3be095a8bbbce75c6de9133346d139ad1389b9323810cf9b1f453f2f19f27104f3b487d4ef6941696a8f6c5ff1d39661fc04c9dc9c88eae44a9af63003eaa97bd67043acbc242289f15d19d1294f",
+              "TopicArn" : "arn:aws:sns:ap-southeast-2:381371729123:Sagar-s-Woocommerce-Local-4-11564-100000",
+              "Message" : "You have chosen to subscribe to the topic arn:aws:sns:ap-southeast-2:381371729123:Sagar-s-Woocommerce-Local-4-11564-100000.\nTo confirm the subscription, visit the SubscribeURL included in this message.",
+              "SubscribeURL" : "https://sns.ap-southeast-2.amazonaws.com/?Action=ConfirmSubscription&TopicArn=arn:aws:sns:ap-southeast-2:381371729123:Sagar-s-Woocommerce-Local-4-11564-100000&Token=2336412f37fb687f5d51e6e241d59b68cca49906632685027c0c87fb03853b30e8c01db85e702587e2eecb17c042d4079f74cc572e3bfbc416798164e9b158bb1f7a3be095a8bbbce75c6de9133346d139ad1389b9323810cf9b1f453f2f19f27104f3b487d4ef6941696a8f6c5ff1d39661fc04c9dc9c88eae44a9af63003eaa97bd67043acbc242289f15d19d1294f",
+              "Timestamp" : "2017-01-17T03:41:51.262Z",
+              "SignatureVersion" : "1",
+              "Signature" : "PgtTp8ZS+P8PQ8UddsxNipxyUlFAmzWv2lkucObNU1Kd+3VFql2/Mo7rq80e9+t/PSdYt3mwvxt3G8kTD7C4+9QombbarhMPXIAK5YKu/nBa8u147dY7mQJMJpa8MJFlaRDdiZOnzJoOA2uSpDTR6uAvTXCwN1pXbEmUCpICFZ++g6lguM6JwHb4CSXYTJ7uxJUi36M71zyohWztVaNHpwJtgtFBOOUt3vjEzZusPUDaZhYyALqfmdkAL3f/8kFCzcpA2CDe6GHYNhq8e2eLWhtnqd7OHk8K4uHOUh+uBoNV71fmUE1FZMoRVwLT7g87B86XOD0X8Tg5jog8uHPu/Q==",
+              "SigningCertURL" : "https://sns.ap-southeast-2.amazonaws.com/SimpleNotificationService-b95095beb82e8f6a046b3aafc7f4149a.pem"
+            }';
       curl_setopt( $ch, CURLOPT_POSTFIELDS, $payload );
       curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
       curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
@@ -88,17 +59,17 @@ class WebhookTest extends TestZipMoney
       $ch = curl_init( $this->webhook_endpoint  );
       # Setup request to send json via POST.
       $payload =  '{
-        "Type" : "SubscriptiosnConfirmation",
-        "MessageId" : "10c67dbc-2300-4217-958e-c3f596fd606e",
-        "Token" : "2336412f37fb687f5d51e6e241d44a2cb13621070379f721624f496560c42a79e22f356446e64ecc0eeec0d6ad91994c6375d57453798f2743d35fcda82f8eca3fc7add92548cd8e7f4d99b5a78400e5d34de2b34763c58bc2aedca1fd5bcf2ac59bdd162d292bf5b2884f0fcd4f52d0d0240b6bbe61a5184beeb636d8e52bbc",
-        "TopicArn" : "arn:aws:sns:ap-southeast-2:381371729123:NotificationTestSagar",
-        "Message" : "You have chosen to subscribe to the topic arn:aws:sns:ap-southeast-2:381371729123:NotificationTestSagar.\nTo confirm the subscription, visit the SubscribeURL included in this message.",
-        "SubscribeURL" : "https://sns.ap-southeast-2.amazonaws.com/?Action=ConfirmSubscription&TopicArn=arn:aws:sns:ap-southeast-2:381371729123:NotificationTestSagar&Token=2336412f37fb687f5d51e6e241d44a2cb13621070379f721624f496560c42a79e22f356446e64ecc0eeec0d6ad91994c6375d57453798f2743d35fcda82f8eca3fc7add92548cd8e7f4d99b5a78400e5d34de2b34763c58bc2aedca1fd5bcf2ac59bdd162d292bf5b2884f0fcd4f52d0d0240b6bbe61a5184beeb636d8e52bbc",
-        "Timestamp" : "2016-05-04T02:06:17.367Z",
-        "SignatureVersion" : "1",
-        "Signature" : "RqJlLpU7u0c1yMtVunDuJYfrjxmYOh/z+JB/dbgl7rK69I+It3kHKCozDRfz5bGU8MrIXBeR3CtCKaapt+xuH/8YAWxFZ4ihnp0eiCTnRePZO2+G6o5VbVx00q3qGODQg9R/TSM4oSZPb48vNjFy4F0EQrzMNjaazH5qT7armA8vEEokBbFmBSMoXPYVz27xcewTT3Z3ppqi2nSz9LuAT/RG3WFWOPCW0/6b23VEK3GqlRcSOkxAucAOFHhrwXMAOHEtCIXv+Wr5HcVpMfEuwNZn4gI3GUXN1Ipe2udW1yLpozfZmDHjws8JgNIfccJCmECtwqoF/CcXrXYPVlVSCg==",
-        "SigningCertURL" : "https://sns.ap-southeast-2.amazonaws.com/SimpleNotificationService-bb750dd426d95ee9390147a5624348ee.pem"
-      }';
+              "Type" : "SubscriptionConfirmation",
+              "MessageId" : "fe202b5d-43e1-4f58-8d2b-b14a46de3e70",
+              "Token" : "2336412f37fb687f5d51e6e241d59b68cca49906632685027c0c87fb03853b30e8c01db85e702587e2eecb17c042d4079f74cc572e3bfbc416798164e9b158bb1f7a3be095a8bbbce75c6de9133346d139ad1389b9323810cf9b1f453f2f19f27104f3b487d4ef6941696a8f6c5ff1d39661fc04c9dc9c88eae44a9af63003eaa97bd67043acbc242289f15d19d1294f",
+              "TopicArn" : "arn:aws:sns:ap-southeast-2:381371729123:Sagar-s-Woocommerce-Local-4-11564-100000",
+              "Message" : "You have chosen to subscribe to the topic arn:aws:sns:ap-southeast-2:381371729123:Sagar-s-Woocommerce-Local-4-11564-100000.\nTo confirm the subscription, visit the SubscribeURL included in this message.",
+              "SubscribeURL" : "https://sns.ap-southeast-2.amazonaws.com/?Action=ConfirmSubscription&TopicArn=arn:aws:sns:ap-southeast-2:381371729123:Sagar-s-Woocommerce-Local-4-11564-100000&Token=2336412f37fb687f5d51e6e241d59b68cca49906632685027c0c87fb03853b30e8c01db85e702587e2eecb17c042d4079f74cc572e3bfbc416798164e9b158bb1f7a3be095a8bbbce75c6de9133346d139ad1389b9323810cf9b1f453f2f19f27104f3b487d4ef6941696a8f6c5ff1d39661fc04c9dc9c88eae44a9af63003eaa97bd67043acbc242289f15d19d1294f",
+              "Timestamp" : "2017-01-17T03:41:51.262Z",
+              "SignatureVersion" : "1",
+              "Signature" : "sPgtTp8ZS+P8PQ8UddsxNipxyUlFAmzWv2lkucObNU1Kd+3VFql2/Mo7rq80e9+t/PSdYt3mwvxt3G8kTD7C4+9QombbarhMPXIAK5YKu/nBa8u147dY7mQJMJpa8MJFlaRDdiZOnzJoOA2uSpDTR6uAvTXCwN1pXbEmUCpICFZ++g6lguM6JwHb4CSXYTJ7uxJUi36M71zyohWztVaNHpwJtgtFBOOUt3vjEzZusPUDaZhYyALqfmdkAL3f/8kFCzcpA2CDe6GHYNhq8e2eLWhtnqd7OHk8K4uHOUh+uBoNV71fmUE1FZMoRVwLT7g87B86XOD0X8Tg5jog8uHPu/Q==",
+              "SigningCertURL" : "https://sns.ap-southeast-2.amazonaws.com/SimpleNotificationService-b95095beb82e8f6a046b3aafc7f4149a.pem"
+            }';
       curl_setopt( $ch, CURLOPT_POSTFIELDS, $payload );
       curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
       curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );

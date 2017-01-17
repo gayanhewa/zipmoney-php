@@ -41,10 +41,10 @@ class Api
   /**
    * Makes api request for the given resource
    *
-   * @param zipMoney\Resource $resource
+   * @param string $resource
    * @param Object $payload
    * @param int $timeout
-   * @return zipMoney\Response
+   * @return \zipMoney\Response
    * @throws \zipMoney\Exception
    */
   public function request($resource, $payload = null, $timeout = 60)
@@ -74,7 +74,7 @@ class Api
    * Calls checkout method on the endpoint
    *
    * @param  $params
-   * @return zipMoney\Response
+   * @return \zipMoney\Response
    */
   public function checkout($params)
   {
@@ -85,7 +85,7 @@ class Api
    * Call cancel method on the endpoint
    *
    * @param  $params
-   * @return zipMoney\Response
+   * @return \zipMoney\Response
    */
   public function cancel($params)
   {               
@@ -96,7 +96,7 @@ class Api
    * Call quote method on the endpoint
    *
    * @param  $params
-   * @return zipMoney\Response
+   * @return \zipMoney\Response
    */
   public function quote($params)
   {        
@@ -107,7 +107,7 @@ class Api
    * Call refund method on the endpoint
    *
    * @param  $params
-   * @return zipMoney\Response
+   * @return \zipMoney\Response
    */
   public function refund($params)
   {
@@ -119,7 +119,7 @@ class Api
    * Call query method on the endpoint
    *
    * @param  $params
-   * @return zipMoney\Response
+   * @return \zipMoney\Response
    */
   public function query($params)
   {       
@@ -130,7 +130,7 @@ class Api
    * Call capture method on the endpoint
    *
    * @param  $params
-   * @return zipMoney\Response
+   * @return \zipMoney\Response
    */
   public function capture($params)
   {       
@@ -141,7 +141,7 @@ class Api
    * Call settings method on the endpoint
    *
    * @param  $params
-   * @return zipMoney\Response
+   * @return \zipMoney\Response
    */
   public function settings($params)
   {        
@@ -152,7 +152,7 @@ class Api
    * Call configure method on the endpoint
    *
    * @param  $params
-   * @return zipMoney\Response
+   * @return \zipMoney\Response
    */
   public function configure($params)
   {    
@@ -162,11 +162,11 @@ class Api
   /**
    * Call heartbeat method on the endpoint
    *
-   * @return zipMoney\Response
+   * @return \zipMoney\Response
    */
   public function heartbeat()
   {
-    return $this->request(Resource::RESOURCE_HEARBEAT, array());
+    return $this->request(Resource::RESOURCE_HEART_BEAT, array());
   }
 
   /**

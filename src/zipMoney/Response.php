@@ -22,7 +22,7 @@ class Response
   public function __construct($response)
   {
     if(!isset($response) || empty($response)) 
-      throw new  ZipMoney_Exception("Response Empty", 1);
+      throw new  Exception("Response Empty", 1);
     
     $this->_statusCode   = $response['status'];
     $this->_responseBody = $response['body'];

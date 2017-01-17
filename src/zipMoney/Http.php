@@ -88,7 +88,7 @@ class Http
   private function _appendPath($path)
   {
     if(!isset($path) || empty($path))             
-      throw new  \zipMoney\HttpException("Request endpoint path should be provided", 1);
+      throw new  HttpException("Request endpoint path should be provided", 1);
     
     if ($this->_baseEndpointUrl && $path) 
       $this->_endpointUrl = $this->_baseEndpointUrl.ltrim($path, '/');
@@ -163,7 +163,7 @@ class Http
 
     if ($this->_config && $this->_config['ssl']){
       if ($httpStatus == 0) {
-        throw new ZipMoney_Exception_Http();
+          throw new HttpException('Http code is 0', 1);
       }
     }
 

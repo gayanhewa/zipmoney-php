@@ -609,7 +609,9 @@ class ExpressController {
 ```
 
 ## Running the tests
-Create a file named Config.php in /tests and provide the zipmoney credentials as follows
+Create a file named Config.php in /tests and provide the zipmoney credentials as follows. 
+You can run a local php server using  the following command from your terminal.
+php -S localhost:8000
 ```php
 <?php
 return array("merchant_id" => Your Merchant Id, 
@@ -619,6 +621,8 @@ return array("merchant_id" => Your Merchant Id,
              "express_endpoint" => "http://your-server-url-for-express-testing.com/test/express.server.php"  // Optional. Required to test express api operations
              );
 ```
+
+After this you can run phpunit from the root folder.
 
 ## License
 The package is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
