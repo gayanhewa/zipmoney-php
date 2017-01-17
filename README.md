@@ -609,7 +609,9 @@ class ExpressController {
 ```
 
 ## Running the tests
-Create a file named Config.php in /tests and provide the zipmoney credentials as follows
+Create a file named Config.php in /tests and provide the zipmoney credentials as follows. 
+You can run a local php server using the following command from your terminal. 
+php -S localhost:8000
 ```php
 <?php
 return array("merchant_id" => Your Merchant Id, 
